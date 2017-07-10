@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ddccaa">
+
+    <ImageView
+        android:id="@+id/ivGambar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+    />
+
+    <TextView
+        android:id="@+id/tvTeks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teks pertama"
+        android:background="#ffffff"
+        android:layout_toLeftOf="@id/ivGambar"
+        android:layout_alignParentBottom="true"
+        style="@style/styleTeks"
+    />
+
+    <TextView
+        android:id="@+id/tvTeks2"
+        android:layout_toLeftOf="@id/ivGambar"
+        android:layout_above="@id/tvTeks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teks kedua"
+        android:background="#ffffff"
+        style="@style/styleTeks"
+    />
+
+    <Button
+        android:id="@+id/btnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_title"
+        android:layout_above="@id/ivGambar"
+    />
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
