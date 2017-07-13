@@ -5,24 +5,39 @@
     tools:context=".FragmentActivity"
     android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/toolbar_fragment"
-        android:name="com.example.android.myapplication.FragmentOne"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        tools:layout="@layout/fragment_one" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Activity Text"/>
 
-    <fragment
-        android:id="@+id/text_fragment"
-        android:name="com.example.android.myapplication.FragmentTwo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        tools:layout="@layout/fragment_two" />
+    <Button
+        android:id="@+id/btnActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_title"/>
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/fragment_1"
+            android:name="com.example.android.myapplication.FragmentOne"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            tools:layout="@layout/fragment_one" />
+
+        <fragment
+            android:id="@+id/fragment_2"
+            android:name="com.example.android.myapplication.FragmentTwo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            tools:layout="@layout/fragment_two" />
+
+    </FrameLayout>
 </LinearLayout>
