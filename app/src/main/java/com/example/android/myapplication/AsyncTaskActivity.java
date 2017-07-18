@@ -1,5 +1,6 @@
 package com.example.android.myapplication;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,5 +28,27 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private class MyAsyncTask extends AsyncTask<String, Void, String>{
+
+        // <VarArg Param, ProgressValue Param, ResultValue Param>
+
+        @Override
+        protected String doInBackground(String... params) { //VarArg Param, Return ResultValue
+            return null;
+        }
+
+        //control+O to add Override Method
+
+        @Override
+        protected void onPostExecute(String s) { //ResultValue Param
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) { //ProgressValueParam
+            super.onProgressUpdate(values);
+        }
     }
 }
