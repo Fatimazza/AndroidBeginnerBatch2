@@ -1,5 +1,6 @@
 package com.example.android.myapplication;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,45 +27,58 @@ public class AsyncTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyAsyncTask myAsyncTask = new MyAsyncTask();
-                myAsyncTask.execute();
+                String sleepTime = time.getText().toString();
+                myAsyncTask.execute(sleepTime);
             }
         });
     }
 
-    private class MyAsyncTask extends AsyncTask<String, Void, String>{
+    private class MyAsyncTask extends AsyncTask<String, String, String>{
 
         // <VarArg Param, ProgressValue Param, ResultValue Param>
 
+        private String resp;
+        ProgressDialog progressDialog;
+
         @Override
         protected String doInBackground(String... params) { //VarArg Param, Return ResultValue
-            String result = "";
-            for (int i=0; i<params.length; i++) {
+
+            publishProgress(" sleeping..."); // Calls onProgressUpdate()
 
                 try {
-                    Thread.sleep(5000);
+                    int time = Integer.parseInt(params[0])*1000;
+                    Thread.sleep(time);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    resp = e.getMessage();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    resp = e.getMessage();
                 }
-
-                if (isCancelled()){
-                    break;
-                }
-
-                result += params[i];
-            }
-            return result;
+                return resp;
         }
 
         //control+O to add Override Method
 
+
         @Override
-        protected void onPostExecute(String s) { //ResultValue Param
-            finalResult.setText(s);
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(AsyncTaskActivity.this,
+                "ProgressDialog",
+                "Wait for "+time.getText().toString()+ " seconds");
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) { //ProgressValueParam
-            super.onProgressUpdate(values);
+        protected void onPostExecute(String s) { //ResultValue Param
+            // execution of result of Long time consuming operation
+            progressDialog.dismiss();
+            finalResult.setText("Slept for "+ time.getText().toString()+ " minutes");
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) { //ProgressValueParam
+            finalResult.setText("progress " +values[0]);
+
         }
     }
 }
