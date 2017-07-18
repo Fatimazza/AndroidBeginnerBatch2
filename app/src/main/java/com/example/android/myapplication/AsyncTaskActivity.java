@@ -25,7 +25,8 @@ public class AsyncTaskActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyAsyncTask myAsyncTask = new MyAsyncTask();
+                myAsyncTask.execute();
             }
         });
     }
@@ -36,14 +37,29 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) { //VarArg Param, Return ResultValue
-            return null;
+            String result = "";
+            for (int i=0; i<params.length; i++) {
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (isCancelled()){
+                    break;
+                }
+
+                result += params[i];
+            }
+            return result;
         }
 
         //control+O to add Override Method
 
         @Override
         protected void onPostExecute(String s) { //ResultValue Param
-            super.onPostExecute(s);
+            finalResult.setText(s);
         }
 
         @Override
